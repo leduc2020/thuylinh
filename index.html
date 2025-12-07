@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="vi-VN" class="dark" data-title-loader="thuylinh">
     <head>
         <meta charset="utf-8">
@@ -14,21 +15,275 @@
         <meta content="#FCFCFD" name="theme-color">
         <meta property="og:image" content="./res/v5/img/bg3.webp">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="./assets/css/style.css?v=3.10">
-        <link rel="stylesheet" href="./assets/css/fuiToast.min.css">
-        <link rel="stylesheet" href="./assets/css/fancybox.css">
-        <link rel="stylesheet" href="./assets/css/index.css?v=3.1">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                background: #0a0a0a;
+                color: #fff;
+                min-height: 100vh;
+            }
+            
+            .dark {
+                --background: #0a0a0a;
+                --foreground: #fff;
+                --muted-foreground: #a1a1aa;
+                --border: #27272a;
+                --input: #18181b;
+                --primary-foreground: #09090b;
+            }
+            
+            .animate {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.6s ease;
+            }
+            
+            .animate.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .magic {
+                position: relative;
+                display: inline-block;
+            }
+            
+            .magic-star {
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                animation: star-float 2s ease-in-out infinite;
+            }
+            
+            .magic-star:nth-child(1) {
+                top: -5px;
+                left: -5px;
+                animation-delay: 0s;
+            }
+            
+            .magic-star:nth-child(2) {
+                top: -5px;
+                right: -5px;
+                animation-delay: 0.3s;
+            }
+            
+            .magic-star:nth-child(3) {
+                bottom: -5px;
+                left: 50%;
+                animation-delay: 0.6s;
+            }
+            
+            @keyframes star-float {
+                0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+                50% { transform: translateY(-3px) scale(1.1); opacity: 1; }
+            }
+            
+            .magic-star svg {
+                fill: #fbbf24;
+                filter: drop-shadow(0 0 5px #fbbf24);
+            }
+            
+            .author-avatar {
+                width: 120px;
+                height: 120px;
+                object-fit: cover;
+                border: 3px solid #27272a;
+            }
+            
+            .crown3 {
+                position: absolute;
+                top: -20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60px;
+                height: auto;
+                animation: crown-bounce 2s ease-in-out infinite;
+            }
+            
+            @keyframes crown-bounce {
+                0%, 100% { transform: translateX(-50%) translateY(0); }
+                50% { transform: translateX(-50%) translateY(-5px); }
+            }
+            
+            .blue-tick {
+                width: 24px;
+                height: 24px;
+                vertical-align: middle;
+            }
+            
+            .icon-spin {
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            
+            .pace {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 3px;
+                z-index: 9999;
+                background: transparent;
+            }
+            
+            .pace-progress {
+                height: 100%;
+                background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+                transition: width 0.3s;
+            }
+            
+            .pace-progress-inner {
+                height: 100%;
+            }
+            
+            .td-loading-v2 {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #0a0a0a;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                transition: opacity 0.5s, visibility 0.5s;
+            }
+            
+            .td-loading-v2.none {
+                opacity: 0;
+                visibility: hidden;
+            }
+            
+            .loading2 {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 20px;
+                border: 3px solid #3b82f6;
+                animation: pulse 2s ease-in-out infinite;
+            }
+            
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.05); opacity: 0.8; }
+            }
+            
+            .ws-loader-text h4 {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+            
+            #waiting-loader {
+                color: #a1a1aa;
+            }
+            
+            header.not-top {
+                background: rgba(9, 9, 11, 0.8);
+                backdrop-filter: blur(10px);
+                border: 1px solid #27272a;
+            }
+            
+            .change-theme {
+                cursor: pointer;
+                background: transparent;
+                border: none;
+                color: inherit;
+                font-size: 20px;
+            }
+            
+            #croll-to-top {
+                cursor: pointer;
+            }
+            
+            #croll-to-top.ended {
+                background: #3b82f6;
+                color: white;
+            }
+            
+            #toast-prompt {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: #18181b;
+                border: 1px solid #27272a;
+                border-radius: 12px;
+                padding: 20px;
+                max-width: 350px;
+                display: none;
+                z-index: 9999;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            }
+            
+            #toast-prompt img {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+            
+            #toast-prompt button {
+                margin-top: 15px;
+                padding: 8px 16px;
+                border-radius: 6px;
+                border: 1px solid #27272a;
+                background: #27272a;
+                color: white;
+                cursor: pointer;
+                margin-right: 10px;
+                transition: all 0.3s;
+            }
+            
+            #toast-prompt button:hover {
+                background: #3f3f46;
+            }
+            
+            #toast-prompt .confirm-btn {
+                background: #3b82f6;
+                border-color: #3b82f6;
+            }
+            
+            #toast-prompt .confirm-btn:hover {
+                background: #2563eb;
+            }
+            
+            #real-time {
+                margin-top: 20px;
+                font-size: 14px;
+                color: #a1a1aa;
+            }
+            
+            .gradient-card {
+                transition: all 0.3s ease;
+            }
+            
+            .gradient-card:hover {
+                transform: translateY(-5px) scale(1.02);
+            }
+        </style>
     </head>
     <body>
         <div class="flex justify-center bg-background">
             <div class="pace pace-active">
-                <div class="pace-progress">
+                <div class="pace-progress" style="width: 0%;">
                     <div class="pace-progress-inner"></div>
                 </div>
             </div>
             <div class="td-loading-v2">
-                <!-- <img class="loading2 none" src="https://files.catbox.moe/fsorjp.jpg" alt="Thùy Linh Loader Screen V2"> -->
-                <img class="loading2 none" src="https://files.catbox.moe/fsorjp.jpg" alt="Thùy Linh Loader Screen V2">
+                <img class="loading2" src="https://files.catbox.moe/fsorjp.jpg" alt="Thùy Linh Loader Screen V2">
                 <div class="ws-loader-text">
                     <h4>Lê Văn Đức</h4>
                     <span id="waiting-loader">
@@ -39,7 +294,7 @@
             </div>
             <div class="pointer-events-none absolute start-0 top-0 z-0 h-1/2 w-full opacity-40" style="background-image:linear-gradient(#659EB966, transparent)"></div>
             <main class="z-10 flex min-h-screen w-screen max-w-[60rem] flex-col items-center px-4 text-[0.92rem] leading-relaxed sm:px-7 lg:px-10">
-                <header class="group sticky top-4 z-30 mb-16 box-content w-full rounded-xl border border-transparent py-1 transition-all duration-300 sm:rounded-2xl [&.not-top]:border-border [&.not-top]:bg-background dark:[&.not-top]:bg-primary-foreground">
+                <header id="main-header" class="group sticky top-4 z-30 mb-16 box-content w-full rounded-xl border border-transparent py-1 transition-all duration-300 sm:rounded-2xl">
                     <header class="flex flex-wrap text-sm sm:flex-nowrap sm:justify-start">
                         <nav class="relative mx-auto flex w-full items-center justify-between sm:flex sm:items-center">
                             <div class="absolute -left-4 -top-8 -z-10 box-content hidden h-20 w-[calc(100%+2rem)] !duration-0 max-sm:group-[.expanded]:block max-sm:group-[.expanded.not-top]:hidden max-sm:group-[.expanded]:bg-white dark:max-sm:group-[.expanded]:bg-primary-foreground"></div>
@@ -102,95 +357,43 @@
                     </section>
                     <section class="animate flex flex-col gap-y-5 md:flex-row md:gap-y-0 show">
                         <div class="text-xl font-semibold md:min-w-36">
-                           <div
-        class="social-links flex flex-row items-center justify-center gap-x-4 mt-4"
-      >
-        <a
-          href="https://www.facebook.com/share/1FfcJg1UYA/"
-          target="_blank"
-          class="hover:opacity-75 transition-all"
-        >
-          <img
-            src="https://cdn.mypanel.link/4cgr8h/9rjnzbd98rt8s5we.gif"
-            width="32"
-            alt="Facebook"
-          />
-        </a>
-        <a
-          href="https://instagram.com/your_instagram"
-          target="_blank"
-          class="hover:opacity-75 transition-all"
-        >
-          <img
-            src="https://cdn.mypanel.link/4cgr8h/15z7egnk0elz7gzm.gif"
-            width="32"
-            alt="Instagram"
-          />
-        </a>
-        <a
-          href="https://www.tiktok.com/@l.dmusic1?_t=ZS-8zFGSa3bd3q&_r=1"
-          target="_blank"
-          class="hover:opacity-75 transition-all"
-        >
-          <img
-            src="https://cdn.mypanel.link/4cgr8h/ewzs0f9k8ic2932y.gif"
-            width="32"
-            alt="TikTok"
-          />
-        </a>
-        <a
-          href="https://github.com/leduc2020"
-          target="_blank"
-          class="hover:opacity-75 transition-all"
-        >
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/733/733553.png"
-            width="32"
-            alt="GitHub"
-          />
-        </a>
-      </div>
-    <section>
-                <h2>Bio</h2>
-                <div>
-                    <p style="color:var(--muted-foreground); margin-bottom:1rem">
-                        Developer / Designer / <del>Vexer</del>
-                    </p>
-                    <div style="color:var(--muted-foreground)">
-                        <p class="mb-4">Hello, my name is VanDuc. I am a member of WusTeam and a freelance programmer, with a passion for coding driven by pure interest.</p>
-                        <p class="mb-4">My main interest lies in back-end.</p>
-                        <p class="mb-4">I enjoy overthinking.</p>
-                        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FWusThanhDieu&count_bg=%23000000&title_bg=%23000000&icon=spacex.svg&icon_color=%23E7E7E7&title=Hits&edge_flat=true" style="border-radius:0.5rem; border:1px solid var(--border)">
-                    </div>
-                </div>
-            </section>
-
-            <!-- Free Source Section -->
-            <section>
-                <h2>Mã Nguồn Free</h2>
-                <div class="source-grid">
-                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="source-card">
-                        <i class="ri-code-s-slash-line"></i>
-                        <h3>Web Portfolio</h3>
-                        <p>Template trang cá nhân đẹp mắt, responsive và dễ tùy chỉnh</p>
-                    </a>
-                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="source-card">
-                        <i class="ri-dashboard-line"></i>
-                        <h3>Admin Dashboard</h3>
-                        <p>Giao diện quản trị hiện đại với đầy đủ tính năng cơ bản</p>
-                    </a>
-                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="source-card">
-                        <i class="ri-shopping-cart-line"></i>
-                        <h3>E-commerce</h3>
-                        <p>Website bán hàng online hoàn chỉnh, tích hợp thanh toán</p>
-                    </a>
-                    <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="source-card">
-                        <i class="ri-article-line"></i>
-                        <h3>Blog System</h3>
-                        <p>Hệ thống blog đầy đủ tính năng viết và quản lý bài viết</p>
-                    </a>
-                </div>
-            </section>
+                           <div class="social-links flex flex-row items-center justify-center gap-x-4 mt-4">
+                                <a href="https://www.facebook.com/share/1FfcJg1UYA/" target="_blank" class="hover:opacity-75 transition-all">
+                                  <img src="https://cdn.mypanel.link/4cgr8h/9rjnzbd98rt8s5we.gif" width="32" alt="Facebook"/>
+                                </a>
+                                <a href="https://instagram.com/your_instagram" target="_blank" class="hover:opacity-75 transition-all">
+                                  <img src="https://cdn.mypanel.link/4cgr8h/15z7egnk0elz7gzm.gif" width="32" alt="Instagram"/>
+                                </a>
+                                <a href="https://www.tiktok.com/@l.dmusic1?_t=ZS-8zFGSa3bd3q&_r=1" target="_blank" class="hover:opacity-75 transition-all">
+                                  <img src="https://cdn.mypanel.link/4cgr8h/ewzs0f9k8ic2932y.gif" width="32" alt="TikTok"/>
+                                </a>
+                                <a href="https://github.com/leduc2020" target="_blank" class="hover:opacity-75 transition-all">
+                                  <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" width="32" alt="GitHub"/>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex flex-1 flex-col gap-y-3">
+                            <h2>Bio</h2>
+                            <p class="text-muted-foreground mt-1">
+                                Developer / Designer / <del>Vexer </del>
+                            </p>
+                            <div class="flex flex-col gap-2 leading-6 text-muted-foreground">
+                                <p>Hello, my name is VanDuc. I am a member of WusTeam and a freelance programmer, with a
+                                passion for coding driven by pure interest.</p>
+                                <p>My main interest lies in back-end.</p>
+                                <p>I enjoy overthinking.</p>
+                                <div class="mt-1 flex gap-x-2">
+                                    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FWusThanhDieu&count_bg=%23000000&title_bg=%23000000&icon=spacex.svg&icon_color=%23E7E7E7&title=Hits&edge_flat=true" class="rounded-md border">
+                                </div>
+                            </div>
+                        </div>
+                        <a class="group inline-flex items-center gap-x-1 rounded-lg bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline w-fit self-end" href="https://shopthuylinh.click/trang-chu" target="_blank">
+                            <p class="my-0">Mã Nguồn Free</p>
+                            <svg class="my-1 stroke-muted-foreground group-hover:stroke-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+                            </svg>
+                        </a>
+                    </section>
                     <section class="animate flex flex-col gap-y-5 md:flex-row md:gap-y-0 show">
                         <div class="text-xl font-semibold md:min-w-36">
                             <h2>Payment</h2>
@@ -228,20 +431,76 @@
                             </div>
                         </div>
                     </section>
+                    
+                    <!-- MÃ NGUỒN FREE SECTION -->
+                    <section class="animate flex flex-col gap-y-5 md:flex-row md:gap-y-0 show">
+                        <div class="text-xl font-semibold md:min-w-36">
+                            <h2>Mã Nguồn Free</h2>
+                        </div>
+                        <div class="flex flex-1 flex-col gap-y-3">
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="gradient-card group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-gradient-to-br from-blue-500/10 to-purple-500/10 transition-all hover:border-blue-400/50 hover:shadow-lg">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div class="relative z-10 flex flex-col gap-y-2 px-5 py-6">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <i class="ri-code-s-slash-line text-2xl text-blue-500"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold">Website Profile</h3>
+                                        <p class="text-sm text-muted-foreground">Mã nguồn trang cá nhân đẹp mắt, responsive</p>
+                                        <div class="flex gap-2 mt-2">
+                                            <span class="text-xs px-2 py-1 rounded-full bg-blue-500/20 text-blue-500">HTML</span>
+                                            <span class="text-xs px-2 py-1 rounded-full bg-purple-500/20 text-purple-500">CSS</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="gradient-card group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-gradient-to-br from-green-500/10 to-teal-500/10 transition-all hover:border-green-400/50 hover:shadow-lg">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-green-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div class="relative z-10 flex flex-col gap-y-2 px-5 py-6">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <i class="ri-dashboard-line text-2xl text-green-500"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold">Admin Dashboard</h3>
+                                        <p class="text-sm text-muted-foreground">Giao diện quản trị hiện đại, đầy đủ tính năng</p>
+                                        <div class="flex gap-2 mt-2">
+                                            <span class="text-xs px-2 py-1 rounded-full bg-green-500/20 text-green-500">Vue.js</span>
+                                            <span class="text-xs px-2 py-1 rounded-full bg-teal-500/20 text-teal-500">Node.js</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="gradient-card group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-gradient-to-br from-pink-500/10 to-rose-500/10 transition-all hover:border-pink-400/50 hover:shadow-lg">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-rose-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div class="relative z-10 flex flex-col gap-y-2 px-5 py-6">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <i class="ri-shopping-cart-line text-2xl text-pink-500"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold">E-Commerce Shop</h3>
+                                        <p class="text-sm text-muted-foreground">Website bán hàng chuyên nghiệp, tích hợp payment</p>
+                                        <div class="flex gap-2 mt-2">
+                                            <span class="text-xs px-2 py-1 rounded-full bg-pink-500/20 text-pink-500">React</span>
+                                            <span class="text-xs px-2 py-1 rounded-full bg-rose-500/20 text-rose-500">MongoDB</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                    
                     <section class="animate flex flex-col gap-y-5 md:flex-row md:gap-y-0 show">
                         <div class="text-xl font-semibold md:min-w-36">
                             <h2>Picture</h2>
                         </div>
                         <div class="flex flex-1 flex-col gap-y-3">
                             <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                                <a class="group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-primary-foreground transition-all hover:border-foreground/25 hover:shadow-sm" data-fancybox="gallery" data-src="https://i.imgur.com/zEJOvAO.gif">
+                                <a class="group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-primary-foreground transition-all hover:border-foreground/25 hover:shadow-sm cursor-pointer">
                                     <img src="https://files.catbox.moe/fsorjp.jpg" alt="Img" class="absolute top-0 h-full w-full object-cover">
                                     <div class="z-10 flex flex-col gap-y-0.5 px-5 pb-4 pt-24">
                                         <h2 class="text-lg font-medium">&ensp;</h2>
                                         <p class="text-muted-foreground">&ensp;</p>
                                     </div>
                                 </a>
-                                <a class="group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-primary-foreground transition-all hover:border-foreground/25 hover:shadow-sm" data-fancybox="gallery" data-src="https://i.ibb.co/b5cYhf5m/image.png">
+                                <a class="group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-primary-foreground transition-all hover:border-foreground/25 hover:shadow-sm cursor-pointer">
                                     <img src="https://files.catbox.moe/fsorjp.jpg" alt="Img" class="absolute top-0 h-full w-full object-cover">
                                     <div class="z-10 flex flex-col gap-y-0.5 px-5 pb-4 pt-24">
                                         <h2 class="text-lg font-medium">&ensp;</h2>
@@ -365,9 +624,9 @@
                         </div>
                     </section>
                 </div>
-                <button class="z-90 group fixed bottom-12 end-4 flex h-10 w-10 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-primary-foreground text-muted-foreground opacity-0 transition-all duration-300 hover:border-border/75 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12 " data-show="true" id="croll-to-top">
-                    <div class="absolute bottom-0 end-0 start-0 top-1 flex items-center justify-center transition-opacity group-hover:opacity-0 group-[.ended]:opacity-1">
-                        <span class="text">0</span>
+                <button class="z-90 group fixed bottom-12 end-4 flex h-10 w-10 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-primary-foreground text-muted-foreground opacity-0 transition-all duration-300 hover:border-border/75 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12" data-show="true" id="croll-to-top">
+                    <div class="absolute bottom-0 end-0 start-0 top-1 flex items-center justify-center transition-opacity group-hover:opacity-0 group-[.ended]:opacity-0">
+                        <span class="text" id="scroll-percent">0</span>
                         <span class="text-xs">%</span>
                     </div>
                     <i class="ri-arrow-up-s-line size-6 opacity-0 transition-opacity group-hover:opacity-100 group-[.ended]:opacity-100"></i>
@@ -378,7 +637,7 @@
                         <span class="relative inline-flex h-2 w-2 rounded-full bg-green-400"></span>
                     </span>
                     <div>
-                        <p id="cham-ngon" class="font-medium text-muted-foreground">Loading...</p>
+                        <p id="cham-ngon" class="font-medium text-muted-foreground">Coding is not just work, it's art 💻</p>
                     </div>
                 </div>
                 <footer class="mx-auto mt-24 w-full text-center">
@@ -386,12 +645,7 @@
                         <div class="flex flex-col items-center justify-center gap-y-3 sm:flex-row sm:gap-y-0">
                             <div class="flex flex-col items-center justify-center gap-2 text-sm sm:flex-row sm:gap-x-4">
                                 <p>
-                                    © 
-                                    <samp id="year">
-                                        <script>
-                                            document.getElementById("year").innerHTML = new Date().getFullYear();
-                                        </script>
-                                    </samp>
+                                    © <span id="year"></span>
                                     <a href="/">ShopThuyLinh.Click</a>
                                     . All Rights Reserved.
                                 </p>
@@ -403,16 +657,167 @@
                 <div id="toast-prompt">
                     <img src="https://i.imgur.com/aGMqekz.gif" width="32" height="32">
                     Bạn có muốn cho phép vừa nghe nhạc vừa lướt trang web không ?
-            <button class="close-btn">Không hẹn lại lần sau</button>
+                    <button class="close-btn">Không hẹn lại lần sau</button>
                     <button class="confirm-btn">Cho phép luôn</button>
                 </div>
             </main>
         </div>
-        <script src="./assets/js/libs/jquery-3.7.1.min.js"></script>
-        <script src="./assets/js/libs/fuiToast.min.js"></script>
-        <script src="./assets/js/libs/fancybox.umd.js"></script>
-        <script src="https://api.thanhdieu.com/addons/cursor-magic.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js" data-pace-options='{"restartOnRequestAfter":false,"eventLag":false}'></script>
-        <script src="./assets/js/index.js?v=3.8"></script>
+        
+        <script>
+            // Loading screen
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    document.querySelector('.td-loading-v2').classList.add('none');
+                    document.querySelector('.pace').style.display = 'none';
+                }, 2000);
+            });
+            
+            // Progress bar simulation
+            let progress = 0;
+            const progressInterval = setInterval(function() {
+                progress += Math.random() * 30;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(progressInterval);
+                }
+                document.querySelector('.pace-progress').style.width = progress + '%';
+            }, 200);
+            
+            // Current year
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Real time clock
+            function updateTime() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                document.getElementById('real-time').textContent = hours + ':' + minutes + ':' + seconds;
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
+            
+            // Scroll to top button
+            const scrollBtn = document.getElementById('croll-to-top');
+            const scrollPercent = document.getElementById('scroll-percent');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const percent = Math.round((scrollTop / scrollHeight) * 100);
+                
+                if (scrollPercent) {
+                    scrollPercent.textContent = percent;
+                }
+                
+                if (percent >= 100) {
+                    scrollBtn.classList.add('ended');
+                } else {
+                    scrollBtn.classList.remove('ended');
+                }
+                
+                if (scrollTop > 300) {
+                    scrollBtn.setAttribute('data-show', 'true');
+                } else {
+                    scrollBtn.setAttribute('data-show', 'false');
+                }
+            });
+            
+            scrollBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('not-top');
+                } else {
+                    header.classList.remove('not-top');
+                }
+            });
+            
+            // Theme toggle
+            const themeBtn = document.querySelector('.change-theme');
+            themeBtn.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    document.body.style.background = '#0a0a0a';
+                    document.body.style.color = '#fff';
+                } else {
+                    document.body.style.background = '#fff';
+                    document.body.style.color = '#0a0a0a';
+                }
+            });
+            
+            // Copy to clipboard
+            document.querySelectorAll('[data-ws-copy]').forEach(function(el) {
+                el.addEventListener('click', function() {
+                    const text = this.getAttribute('data-ws-copy');
+                    navigator.clipboard.writeText(text).then(function() {
+                        alert('Đã copy: ' + text);
+                    });
+                });
+            });
+            
+            // Toast prompt
+            setTimeout(function() {
+                const toast = document.getElementById('toast-prompt');
+                if (toast) {
+                    toast.style.display = 'block';
+                }
+            }, 5000);
+            
+            document.querySelector('.close-btn')?.addEventListener('click', function() {
+                document.getElementById('toast-prompt').style.display = 'none';
+            });
+            
+            document.querySelector('.confirm-btn')?.addEventListener('click', function() {
+                document.getElementById('toast-prompt').style.display = 'none';
+                alert('Tính năng này đang được phát triển!');
+            });
+            
+            // Animate on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.animate').forEach(function(el) {
+                observer.observe(el);
+            });
+            
+            // Random quotes
+            const quotes = [
+                "Coding is not just work, it's art 💻",
+                "Code never lies, comments sometimes do 🤔",
+                "First, solve the problem. Then, write the code 🎯",
+                "Experience is the name everyone gives to their mistakes 🌟",
+                "The best way to predict the future is to invent it 🚀"
+            ];
+            
+            setInterval(function() {
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                const quoteEl = document.getElementById('cham-ngon');
+                if (quoteEl) {
+                    quoteEl.style.opacity = '0';
+                    setTimeout(function() {
+                        quoteEl.textContent = randomQuote;
+                        quoteEl.style.opacity = '1';
+                    }, 300);
+                }
+            }, 10000);
+        </script>
     </body>
 </html>
