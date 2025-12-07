@@ -487,9 +487,28 @@
             min-height: 100vh;
             padding-bottom: 50px;
         }
+
+        /* --- Bổ sung: CSS cho YouTube Player Background --- */
+        #player {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -10; /* Đặt sau animated-bg (z-index: 0) và nội dung chính (z-index: 10) */
+            overflow: hidden;
+            pointer-events: none; /* Rất quan trọng để click chuột xuyên qua được */
+        }
+        #player iframe {
+            /* Đảm bảo iframe video lấp đầy toàn bộ #player div */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
+    <div id="player"></div>
     <div class="animated-bg"></div>
     <div class="loading-screen" id="loading">
         <div class="loader"></div>
@@ -974,6 +993,49 @@
         // Prevent console errors on older browsers
         if (!window.console) window.console = {};
         if (!window.console.log) window.console.log = function() {};
+
+        // --- BỔ SUNG: YouTube Iframe Player API ---
+
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+
+        // Khi API đã tải xong và sẵn sàng
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '315',
+                width: '560',
+                videoId: 'jWo6lG0p3OY', // ID video của YouTube
+                playerVars: {
+                    autoplay: 0, // Không tự động phát video khi tải trang
+                    mute: 1, // Đặt mute ban đầu
+                    controls: 0, // Ẩn các điều khiển của video
+                    loop: 1, // Lặp lại video
+                    playlist: 'jWo6lG0p3OY' // Phải chỉ định playlist để loop hoạt động
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        // Khi player đã sẵn sàng
+        function onPlayerReady(event) {
+            // Lắng nghe sự kiện click trên toàn bộ body
+            document.body.addEventListener('click', function() {
+                // Chỉ thực hiện lệnh play và unmute một lần
+                if (player && player.getPlayerState() !== YT.PlayerState.PLAYING) {
+                    player.playVideo();
+                    player.unMute();
+                }
+            }, { once: true }); // Sử dụng { once: true } để chỉ chạy lắng nghe này một lần
+        }
+
+        // --- KẾT THÚC BỔ SUNG: YouTube Iframe Player API ---
+
     </script>
 </body>
 </html>
