@@ -488,27 +488,19 @@
             padding-bottom: 50px;
         }
 
-        /* --- Bổ sung: CSS cho YouTube Player Background --- */
+        /* --- CHỈNH SỬA: ẨN HOÀN TOÀN YOUTUBE PLAYER ĐỂ KHÔI PHỤC THEME --- */
         #player {
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -10; /* Đặt sau animated-bg (z-index: 0) và nội dung chính (z-index: 10) */
-            overflow: hidden;
-            pointer-events: none; /* Rất quan trọng để click chuột xuyên qua được */
-        }
-        #player iframe {
-            /* Đảm bảo iframe video lấp đầy toàn bộ #player div */
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            display: none !important; 
+            visibility: hidden !important; 
+            width: 0 !important;
+            height: 0 !important;
         }
     </style>
 </head>
 <body>
+    
     <div id="player"></div>
+    
     <div class="animated-bg"></div>
     <div class="loading-screen" id="loading">
         <div class="loader"></div>
@@ -994,7 +986,7 @@
         if (!window.console) window.console = {};
         if (!window.console.log) window.console.log = function() {};
 
-        // --- BỔ SUNG: YouTube Iframe Player API ---
+        // --- GIỮ LẠI: YouTube Iframe Player API ---
 
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
@@ -1008,13 +1000,13 @@
             player = new YT.Player('player', {
                 height: '315',
                 width: '560',
-                videoId: 'DQqI0-DMwF4', // ID video của YouTube
+                videoId: 'DQqI0-DMwF4', 
                 playerVars: {
-                    autoplay: 0, // Không tự động phát video khi tải trang
-                    mute: 1, // Đặt mute ban đầu
-                    controls: 0, // Ẩn các điều khiển của video
-                    loop: 1, // Lặp lại video
-                    playlist: 'DQqI0-DMwF4' // Phải chỉ định playlist để loop hoạt động
+                    autoplay: 0, 
+                    mute: 1,      
+                    controls: 0,  
+                    loop: 1,      
+                    playlist: 'DQqI0-DMwF4' 
                 },
                 events: {
                     'onReady': onPlayerReady
@@ -1034,8 +1026,7 @@
             }, { once: true }); // Sử dụng { once: true } để chỉ chạy lắng nghe này một lần
         }
 
-        // --- KẾT THÚC BỔ SUNG: YouTube Iframe Player API ---
-
+        // --- KẾT THÚC: YouTube Iframe Player API ---
     </script>
 </body>
 </html>
