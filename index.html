@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-<html lang="vi-VN" class="dark" data-title-loader="thuylinh">
+<html lang="vi-VN" class="dark">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Van Duc - Home</title>
-        <meta property="og:title" content="Le Van Duc  | Profile Home">
+        <title>Van Duc - Portfolio</title>
+        <meta property="og:title" content="Le Van Duc | Developer Portfolio">
         <link rel="shortcut icon" href="https://i.ibb.co/rGMn65d/boss.webp" type="image/x-icon">
-        <meta name="description" content="Hi my name is Vanduc / A freelance / web developer / vexer">
-        <meta name="keywords" content="thuylinh,web thuy linh,le ngoc thuy linh,thuylinhtv,wsteam,wusteam,thuylinh home,profile thuylinh">
-        <link rel="canonical" href="https://shopthuylinh.click/">
-        <meta content="ThuyLinhTv" name="author">
-        <meta property="og:type" content="website">
-        <meta content="#FCFCFD" name="theme-color">
-        <meta property="og:image" content="./res/v5/img/bg3.webp">
+        <meta name="description" content="Full-stack Developer | Designer | Freelancer">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.min.css" rel="stylesheet">
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+            
             * {
                 margin: 0;
                 padding: 0;
@@ -24,800 +20,995 @@
             }
             
             body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-                background: #0a0a0a;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
                 color: #fff;
                 min-height: 100vh;
+                overflow-x: hidden;
             }
             
-            .dark {
-                --background: #0a0a0a;
-                --foreground: #fff;
-                --muted-foreground: #a1a1aa;
-                --border: #27272a;
-                --input: #18181b;
-                --primary-foreground: #09090b;
-            }
-            
-            .animate {
-                opacity: 0;
-                transform: translateY(20px);
-                transition: all 0.6s ease;
-            }
-            
-            .animate.show {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            
-            .magic {
-                position: relative;
-                display: inline-block;
-            }
-            
-            .magic-star {
-                position: absolute;
-                width: 15px;
-                height: 15px;
-                animation: star-float 2s ease-in-out infinite;
-            }
-            
-            .magic-star:nth-child(1) {
-                top: -5px;
-                left: -5px;
-                animation-delay: 0s;
-            }
-            
-            .magic-star:nth-child(2) {
-                top: -5px;
-                right: -5px;
-                animation-delay: 0.3s;
-            }
-            
-            .magic-star:nth-child(3) {
-                bottom: -5px;
-                left: 50%;
-                animation-delay: 0.6s;
-            }
-            
-            @keyframes star-float {
-                0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
-                50% { transform: translateY(-3px) scale(1.1); opacity: 1; }
-            }
-            
-            .magic-star svg {
-                fill: #fbbf24;
-                filter: drop-shadow(0 0 5px #fbbf24);
-            }
-            
-            .author-avatar {
-                width: 120px;
-                height: 120px;
-                object-fit: cover;
-                border: 3px solid #27272a;
-            }
-            
-            .crown3 {
-                position: absolute;
-                top: -20px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 60px;
-                height: auto;
-                animation: crown-bounce 2s ease-in-out infinite;
-            }
-            
-            @keyframes crown-bounce {
-                0%, 100% { transform: translateX(-50%) translateY(0); }
-                50% { transform: translateX(-50%) translateY(-5px); }
-            }
-            
-            .blue-tick {
-                width: 24px;
-                height: 24px;
-                vertical-align: middle;
-            }
-            
-            .icon-spin {
-                animation: spin 1s linear infinite;
-            }
-            
-            @keyframes spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-            
-            .pace {
+            /* Animated Background */
+            .animated-bg {
                 position: fixed;
+                width: 100%;
+                height: 100%;
                 top: 0;
                 left: 0;
-                width: 100%;
-                height: 3px;
-                z-index: 9999;
-                background: transparent;
+                z-index: 0;
+                overflow: hidden;
             }
             
-            .pace-progress {
-                height: 100%;
-                background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-                transition: width 0.3s;
+            .animated-bg::before {
+                content: '';
+                position: absolute;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+                animation: float 20s ease-in-out infinite;
             }
             
-            .pace-progress-inner {
-                height: 100%;
+            @keyframes float {
+                0%, 100% { transform: translate(0, 0) rotate(0deg); }
+                33% { transform: translate(30px, -30px) rotate(120deg); }
+                66% { transform: translate(-20px, 20px) rotate(240deg); }
             }
             
-            .td-loading-v2 {
+            /* Glassmorphism */
+            .glass {
+                background: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            }
+            
+            .glass-strong {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(30px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            /* Loading Screen */
+            .loading-screen {
                 position: fixed;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: #0a0a0a;
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                z-index: 9999;
-                transition: opacity 0.5s, visibility 0.5s;
+                z-index: 99999;
+                transition: opacity 0.6s, visibility 0.6s;
             }
             
-            .td-loading-v2.none {
+            .loading-screen.hide {
                 opacity: 0;
                 visibility: hidden;
             }
             
-            .loading2 {
-                width: 150px;
-                height: 150px;
+            .loader {
+                width: 100px;
+                height: 100px;
+                position: relative;
+            }
+            
+            .loader::before, .loader::after {
+                content: '';
+                position: absolute;
+                border-radius: 50%;
+            }
+            
+            .loader::before {
+                width: 100%;
+                height: 100%;
+                border: 4px solid rgba(59, 130, 246, 0.2);
+                border-top-color: #3b82f6;
+                animation: spin 1s linear infinite;
+            }
+            
+            .loader::after {
+                width: 60%;
+                height: 60%;
+                top: 20%;
+                left: 20%;
+                border: 4px solid rgba(139, 92, 246, 0.2);
+                border-top-color: #8b5cf6;
+                animation: spin 0.6s linear infinite reverse;
+            }
+            
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+            
+            .loading-text {
+                margin-top: 30px;
+                font-size: 18px;
+                font-weight: 600;
+                background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+                background-size: 200% 200%;
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                animation: gradient 3s ease infinite;
+            }
+            
+            @keyframes gradient {
+                0%, 100% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+            }
+            
+            /* Header */
+            .header {
+                position: sticky;
+                top: 20px;
+                z-index: 1000;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .header.scrolled {
+                top: 10px;
+            }
+            
+            .header.scrolled .header-content {
+                padding: 12px 24px;
+            }
+            
+            /* Avatar */
+            .avatar-container {
+                position: relative;
+                width: 140px;
+                height: 140px;
+            }
+            
+            .avatar-ring {
+                position: absolute;
+                inset: -4px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+                animation: rotate 3s linear infinite;
+                opacity: 0.6;
+            }
+            
+            @keyframes rotate {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            
+            .avatar-img {
+                position: relative;
+                width: 100%;
+                height: 100%;
                 border-radius: 50%;
                 object-fit: cover;
-                margin-bottom: 20px;
-                border: 3px solid #3b82f6;
-                animation: pulse 2s ease-in-out infinite;
+                border: 4px solid #0a0a0a;
+                z-index: 1;
             }
             
-            @keyframes pulse {
-                0%, 100% { transform: scale(1); opacity: 1; }
-                50% { transform: scale(1.05); opacity: 0.8; }
-            }
-            
-            .ws-loader-text h4 {
+            .crown-badge {
+                position: absolute;
+                top: -15px;
+                right: -10px;
+                background: linear-gradient(135deg, #fbbf24, #f59e0b);
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 font-size: 24px;
-                font-weight: bold;
-                margin-bottom: 10px;
+                animation: bounce 2s ease-in-out infinite;
+                box-shadow: 0 4px 15px rgba(251, 191, 36, 0.5);
+                z-index: 2;
             }
             
-            #waiting-loader {
-                color: #a1a1aa;
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
             }
             
-            header.not-top {
-                background: rgba(9, 9, 11, 0.8);
+            /* Cards */
+            .card {
+                border-radius: 20px;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                opacity: 0;
+                background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+                transition: opacity 0.4s;
+            }
+            
+            .card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+            }
+            
+            .card:hover::before {
+                opacity: 1;
+            }
+            
+            /* Gradient Cards */
+            .gradient-card-blue {
+                background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+                border: 1px solid rgba(59, 130, 246, 0.3);
+            }
+            
+            .gradient-card-blue:hover {
+                border-color: rgba(59, 130, 246, 0.6);
+                box-shadow: 0 20px 60px rgba(59, 130, 246, 0.4);
+            }
+            
+            .gradient-card-green {
+                background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.15));
+                border: 1px solid rgba(16, 185, 129, 0.3);
+            }
+            
+            .gradient-card-green:hover {
+                border-color: rgba(16, 185, 129, 0.6);
+                box-shadow: 0 20px 60px rgba(16, 185, 129, 0.4);
+            }
+            
+            .gradient-card-pink {
+                background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(219, 39, 119, 0.15));
+                border: 1px solid rgba(236, 72, 153, 0.3);
+            }
+            
+            .gradient-card-pink:hover {
+                border-color: rgba(236, 72, 153, 0.6);
+                box-shadow: 0 20px 60px rgba(236, 72, 153, 0.4);
+            }
+            
+            /* Tags */
+            .tag {
+                padding: 6px 14px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 500;
                 backdrop-filter: blur(10px);
-                border: 1px solid #27272a;
-            }
-            
-            .change-theme {
-                cursor: pointer;
-                background: transparent;
-                border: none;
-                color: inherit;
-                font-size: 20px;
-            }
-            
-            #croll-to-top {
-                cursor: pointer;
-            }
-            
-            #croll-to-top.ended {
-                background: #3b82f6;
-                color: white;
-            }
-            
-            #toast-prompt {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background: #18181b;
-                border: 1px solid #27272a;
-                border-radius: 12px;
-                padding: 20px;
-                max-width: 350px;
-                display: none;
-                z-index: 9999;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            }
-            
-            #toast-prompt img {
-                display: inline-block;
-                vertical-align: middle;
-                margin-right: 10px;
-            }
-            
-            #toast-prompt button {
-                margin-top: 15px;
-                padding: 8px 16px;
-                border-radius: 6px;
-                border: 1px solid #27272a;
-                background: #27272a;
-                color: white;
-                cursor: pointer;
-                margin-right: 10px;
                 transition: all 0.3s;
             }
             
-            #toast-prompt button:hover {
-                background: #3f3f46;
+            .tag:hover {
+                transform: scale(1.05);
             }
             
-            #toast-prompt .confirm-btn {
-                background: #3b82f6;
-                border-color: #3b82f6;
+            /* Skill Badge */
+            .skill-badge {
+                padding: 8px 16px;
+                border-radius: 12px;
+                font-size: 13px;
+                font-weight: 500;
+                transition: all 0.3s;
+                cursor: default;
             }
             
-            #toast-prompt .confirm-btn:hover {
-                background: #2563eb;
+            .skill-badge:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
             }
             
-            #real-time {
-                margin-top: 20px;
+            /* Social Links */
+            .social-link {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .social-link::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+            
+            .social-link:hover::before {
+                opacity: 0.2;
+            }
+            
+            .social-link:hover {
+                transform: translateY(-5px) scale(1.1);
+                box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            }
+            
+            /* Button */
+            .btn-primary {
+                background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                padding: 12px 28px;
+                border-radius: 12px;
+                font-weight: 600;
+                transition: all 0.3s;
+                border: none;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .btn-primary::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+            
+            .btn-primary:hover::before {
+                opacity: 1;
+            }
+            
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+            }
+            
+            /* Scroll to top */
+            .scroll-top {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                opacity: 0;
+                transform: translateY(100px);
+                transition: all 0.4s;
+                z-index: 1000;
+                box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            }
+            
+            .scroll-top.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .scroll-top:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6);
+            }
+            
+            /* Status Badge */
+            .status-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 12px 20px;
+                border-radius: 30px;
                 font-size: 14px;
-                color: #a1a1aa;
+                font-weight: 500;
             }
             
-            .gradient-card {
-                transition: all 0.3s ease;
+            .status-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #10b981;
+                position: relative;
             }
             
-            .gradient-card:hover {
-                transform: translateY(-5px) scale(1.02);
+            .status-dot::before {
+                content: '';
+                position: absolute;
+                inset: -4px;
+                border-radius: 50%;
+                background: #10b981;
+                opacity: 0.3;
+                animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+            }
+            
+            @keyframes ping {
+                75%, 100% {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+            
+            /* Animations */
+            .fade-in {
+                animation: fadeIn 0.8s ease-out;
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .fade-in-delay-1 { animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards; }
+            .fade-in-delay-2 { animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards; }
+            .fade-in-delay-3 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; }
+            
+            /* Payment Card */
+            .payment-card {
+                background: linear-gradient(135deg, rgba(30, 30, 46, 0.8), rgba(20, 20, 30, 0.8));
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 16px;
+                padding: 20px;
+                transition: all 0.3s;
+            }
+            
+            .payment-card:hover {
+                border-color: rgba(59, 130, 246, 0.5);
+                transform: translateY(-3px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            }
+            
+            /* Theme Toggle */
+            .theme-toggle {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s;
+                background: rgba(255, 255, 255, 0.05);
+            }
+            
+            .theme-toggle:hover {
+                background: rgba(255, 255, 255, 0.1);
+                transform: rotate(180deg);
+            }
+            
+            /* Responsive */
+            @media (max-width: 768px) {
+                .avatar-container {
+                    width: 120px;
+                    height: 120px;
+                }
+                
+                .card {
+                    padding: 20px !important;
+                }
+                
+                .scroll-top {
+                    bottom: 20px;
+                    right: 20px;
+                    width: 45px;
+                    height: 45px;
+                }
             }
         </style>
     </head>
     <body>
-        <div class="flex justify-center bg-background">
-            <div class="pace pace-active">
-                <div class="pace-progress" style="width: 0%;">
-                    <div class="pace-progress-inner"></div>
+        <!-- Animated Background -->
+        <div class="animated-bg"></div>
+        
+        <!-- Loading Screen -->
+        <div class="loading-screen" id="loading">
+            <div class="loader"></div>
+            <div class="loading-text">Loading Portfolio...</div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="relative z-10">
+            <!-- Header -->
+            <header class="header" id="header">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+                    <div class="glass header-content rounded-2xl px-6 py-3 flex items-center justify-between transition-all">
+                        <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                            Van Duc
+                        </h1>
+                        <div class="flex items-center gap-3">
+                            <button class="theme-toggle" id="themeToggle">
+                                <i class="ri-sun-line text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="td-loading-v2">
-                <img class="loading2" src="https://files.catbox.moe/fsorjp.jpg" alt="Thùy Linh Loader Screen V2">
-                <div class="ws-loader-text">
-                    <h4>Lê Văn Đức</h4>
-                    <span id="waiting-loader">
-                        <i class="ri-loader-4-line icon-spin"></i>
-                        &ensp;Đang tải lời chúc...
-                    </span>
-                </div>
-            </div>
-            <div class="pointer-events-none absolute start-0 top-0 z-0 h-1/2 w-full opacity-40" style="background-image:linear-gradient(#659EB966, transparent)"></div>
-            <main class="z-10 flex min-h-screen w-screen max-w-[60rem] flex-col items-center px-4 text-[0.92rem] leading-relaxed sm:px-7 lg:px-10">
-                <header id="main-header" class="group sticky top-4 z-30 mb-16 box-content w-full rounded-xl border border-transparent py-1 transition-all duration-300 sm:rounded-2xl">
-                    <header class="flex flex-wrap text-sm sm:flex-nowrap sm:justify-start">
-                        <nav class="relative mx-auto flex w-full items-center justify-between sm:flex sm:items-center">
-                            <div class="absolute -left-4 -top-8 -z-10 box-content hidden h-20 w-[calc(100%+2rem)] !duration-0 max-sm:group-[.expanded]:block max-sm:group-[.expanded.not-top]:hidden max-sm:group-[.expanded]:bg-white dark:max-sm:group-[.expanded]:bg-primary-foreground"></div>
-                            <h1 class="flex-none text-xl font-semibold transition-all duration-300 group-[.not-top]:ms-3 sm:group-[.not-top]:ms-5">
-                                <span class="magic">
-                                    <span class="magic-star">
-                                        <svg viewBox="0 0 512 512">
-                                            <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"></path>
-                                        </svg>
-                                    </span>
-                                    <span class="magic-star">
-                                        <svg viewBox="0 0 512 512">
-                                            <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"></path>
-                                        </svg>
-                                    </span>
-                                    <span class="magic-star">
-                                        <svg viewBox="0 0 512 512">
-                                            <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z"></path>
-                                        </svg>
-                                    </span>
-                                    <span class="magic-text">Van Duc Home</span>
-                                </span>
-                            </h1>
-                            <div class="flex gap-x-4 sm:gap-x-6">
-                                <div class="flex gap-x-4 transition-all group-[.not-top]:me-1.5 group-[.not-top]:gap-x-2">
-                                    <button class="change-theme group/dark rounded-md p-2 transition-all sm:group-[.not-top]:rounded-xl">
-                                        <i class="ri-sun-line transition-all group-hover/dark:text-primary dark:hidden"></i>
-                                        <i class="ri-moon-clear-line hidden transition-all group-hover/dark:text-primary dark:block"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </nav>
-                    </header>
-                </header>
-                <div class="flex w-full flex-col gap-y-10 md:w-4/5 lg:w-5/6">
-                    <section class="animate flex flex-col items-center gap-y-7 show">
-                        <div class="relative">
-                            <img src="https://files.catbox.moe/fsorjp.jpg" alt="Avatar" class="author-avatar rounded-full border p-1">
-                            <img class="crown3" src="./assets/img/mong-vuot-rong.png">
+            </header>
+            
+            <!-- Main -->
+            <main class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl py-12">
+                <!-- Hero Section -->
+                <section class="text-center mb-20 fade-in">
+                    <div class="avatar-container mx-auto mb-8">
+                        <div class="avatar-ring"></div>
+                        <img src="https://files.catbox.moe/fsorjp.jpg" alt="Avatar" class="avatar-img">
+                        <div class="crown-badge">👑</div>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                        LE VAN DUC
+                    </h1>
+                    
+                    <p class="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
+                        Full-stack Developer • Designer • <del class="opacity-60">Vexer</del>
+                    </p>
+                    
+                    <p class="text-gray-400 mb-8 max-w-xl mx-auto">
+                        Lời nói gió bay, hứa càng hay chia tay <span class="text-purple-400">càng thấm 😞</span>
+                    </p>
+                    
+                    <div class="flex flex-wrap justify-center gap-6 mb-8">
+                        <div class="flex items-center gap-2 text-gray-300">
+                            <i class="ri-map-pin-line text-blue-400"></i>
+                            <span>Vietnam / Hanoi City</span>
                         </div>
-                        <div class="flex flex-col items-center gap-y-4">
-                            <h1 class="text-3xl font-bold flex items-center">
-                                LE VAN DUC <img class="blue-tick ml-2" src="./assets/img/icon/tick.png">
-                            </h1>
-                            <p>
-                                Lời nói gió bay, hứa càng hay chia tay <span class="bg-primary-foreground rounded text-transparent hover:text-inherit transition-colors cursor-pointer">càng
-                                thấm 😞.</span>
-                            </p>
-                            <div class="flex flex-wrap justify-center gap-x-7 gap-y-3">
-                                <div class="flex flex-row items-center justify-center gap-x-2">
-                                    <i class="ri-map-pin-line"></i>
-                                    <p>Vietnam / HA Noi City</p>
-                                </div>
-                                <a class="flex flex-row items-center justify-center gap-x-2 hover:opacity-75 transition-all" href="https://github.com/leduc2020" target="_blank">
-                                    <i class="ri-github-fill"></i>
-                                    <p>My GitHub</p>
-                                </a>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="animate flex flex-col gap-y-5 md:flex-row md:gap-y-0 show">
-                        <div class="text-xl font-semibold md:min-w-36">
-                           <div class="social-links flex flex-row items-center justify-center gap-x-4 mt-4">
-                                <a href="https://www.facebook.com/share/1FfcJg1UYA/" target="_blank" class="hover:opacity-75 transition-all">
-                                  <img src="https://cdn.mypanel.link/4cgr8h/9rjnzbd98rt8s5we.gif" width="32" alt="Facebook"/>
-                                </a>
-                                <a href="https://instagram.com/your_instagram" target="_blank" class="hover:opacity-75 transition-all">
-                                  <img src="https://cdn.mypanel.link/4cgr8h/15z7egnk0elz7gzm.gif" width="32" alt="Instagram"/>
-                                </a>
-                                <a href="https://www.tiktok.com/@l.dmusic1?_t=ZS-8zFGSa3bd3q&_r=1" target="_blank" class="hover:opacity-75 transition-all">
-                                  <img src="https://cdn.mypanel.link/4cgr8h/ewzs0f9k8ic2932y.gif" width="32" alt="TikTok"/>
-                                </a>
-                                <a href="https://github.com/leduc2020" target="_blank" class="hover:opacity-75 transition-all">
-                                  <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" width="32" alt="GitHub"/>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="flex flex-1 flex-col gap-y-3">
-                            <h2>Bio</h2>
-                            <p class="text-muted-foreground mt-1">
-                                Developer / Designer / <del>Vexer </del>
-                            </p>
-                            <div class="flex flex-col gap-2 leading-6 text-muted-foreground">
-                                <p>Hello, my name is VanDuc. I am a member of WusTeam and a freelance programmer, with a
-                                passion for coding driven by pure interest.</p>
-                                <p>My main interest lies in back-end.</p>
-                                <p>I enjoy overthinking.</p>
-                                <div class="mt-1 flex gap-x-2">
-                                    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FWusThanhDieu&count_bg=%23000000&title_bg=%23000000&icon=spacex.svg&icon_color=%23E7E7E7&title=Hits&edge_flat=true" class="rounded-md border">
-                                </div>
-                            </div>
-                        </div>
-                        <a class="group inline-flex items-center gap-x-1 rounded-lg bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline w-fit self-end" href="https://shopthuylinh.click/trang-chu" target="_blank">
-                            <p class="my-0">Mã Nguồn Free</p>
-                            <svg class="my-1 stroke-muted-foreground group-hover:stroke-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
-                            </svg>
+                        <a href="https://github.com/leduc2020" target="_blank" class="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors">
+                            <i class="ri-github-fill"></i>
+                            <span>GitHub</span>
                         </a>
-                    </section>
-                    <section class="animate flex flex-col gap-y-5 md:flex-row md:gap-y-0 show">
-                        <div class="text-xl font-semibold md:min-w-36">
-                            <h2>Payment</h2>
-                        </div>
-                        <div class="mb-5 flex flex-col rounded-xl border border-border py-3 px-3 gap-y-3 sm:gap-y-4 text-nowrap">
-                            <div class="grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2 sm:gap-y-4">
-                                <a class="group relative text-sm leading-normal no-underline hover:bg-transparent">
-                                    <div class="relative flex flex-row items-center gap-x-4 px-2 py-1.5 transition-all">
-                                        <div class="absolute -inset-0 z-10 rounded-lg border border-border bg-muted opacity-0 transition-all group-hover:opacity-50"></div>
-                                        <img src="./assets/img/icon/acb.png" class="z-20 h-10 w-10 rounded-lg bg-muted p-2" alt="ACB">
-                                        <div class="z-20 flex flex-col">
-                                            <div class="font-medium">
-                                                LE VAN DUC <i data-ws-copy="LE VAN DUC" class="ri-file-copy-line text-muted-foreground cursor-pointer"></i>
-                                            </div>
-                                            <div class="font-normal text-muted-foreground">
-                                                7104042010 <i data-ws-copy="7104042010" class="ri-file-copy-line cursor-pointer"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="me-10 group relative text-sm leading-normal no-underline hover:bg-transparent">
-                                    <div class="relative flex flex-row items-center gap-x-4 px-2 py-1.5 transition-all">
-                                        <div class="absolute -inset-0 z-10 rounded-lg border border-border bg-muted opacity-0 transition-all group-hover:opacity-50"></div>
-                                        <img src="./assets/img/icon/vietinbank.png" class="z-20 h-10 w-10 rounded-lg bg-muted p-2" alt="Zalopay">
-                                        <div class="z-20 flex flex-col">
-                                            <div class="font-medium">
-                                                LE VAN DUC <i data-ws-copy="LE VAN DUC" class="ri-file-copy-line text-muted-foreground cursor-pointer"></i>
-                                            </div>
-                                            <div class="font-normal text-muted-foreground">
-                                                7104042010 <i data-ws-copy="7104042010" class="ri-file-copy-line cursor-pointer"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </section>
+                    </div>
                     
-                    <!-- MÃ NGUỒN FREE SECTION -->
-                    <section class="animate flex flex-col gap-y-5 md:flex-row md:gap-y-0 show">
-                        <div class="text-xl font-semibold md:min-w-36">
-                            <h2>Mã Nguồn Free</h2>
-                        </div>
-                        <div class="flex flex-1 flex-col gap-y-3">
-                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                                <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="gradient-card group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-gradient-to-br from-blue-500/10 to-purple-500/10 transition-all hover:border-blue-400/50 hover:shadow-lg">
-                                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                    <div class="relative z-10 flex flex-col gap-y-2 px-5 py-6">
-                                        <div class="flex items-center gap-2 mb-2">
-                                            <i class="ri-code-s-slash-line text-2xl text-blue-500"></i>
-                                        </div>
-                                        <h3 class="text-lg font-semibold">Website Profile</h3>
-                                        <p class="text-sm text-muted-foreground">Mã nguồn trang cá nhân đẹp mắt, responsive</p>
-                                        <div class="flex gap-2 mt-2">
-                                            <span class="text-xs px-2 py-1 rounded-full bg-blue-500/20 text-blue-500">HTML</span>
-                                            <span class="text-xs px-2 py-1 rounded-full bg-purple-500/20 text-purple-500">CSS</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                
-                                <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="gradient-card group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-gradient-to-br from-green-500/10 to-teal-500/10 transition-all hover:border-green-400/50 hover:shadow-lg">
-                                    <div class="absolute inset-0 bg-gradient-to-br from-green-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                    <div class="relative z-10 flex flex-col gap-y-2 px-5 py-6">
-                                        <div class="flex items-center gap-2 mb-2">
-                                            <i class="ri-dashboard-line text-2xl text-green-500"></i>
-                                        </div>
-                                        <h3 class="text-lg font-semibold">Admin Dashboard</h3>
-                                        <p class="text-sm text-muted-foreground">Giao diện quản trị hiện đại, đầy đủ tính năng</p>
-                                        <div class="flex gap-2 mt-2">
-                                            <span class="text-xs px-2 py-1 rounded-full bg-green-500/20 text-green-500">Vue.js</span>
-                                            <span class="text-xs px-2 py-1 rounded-full bg-teal-500/20 text-teal-500">Node.js</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                
-                                <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="gradient-card group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-gradient-to-br from-pink-500/10 to-rose-500/10 transition-all hover:border-pink-400/50 hover:shadow-lg">
-                                    <div class="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-rose-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                    <div class="relative z-10 flex flex-col gap-y-2 px-5 py-6">
-                                        <div class="flex items-center gap-2 mb-2">
-                                            <i class="ri-shopping-cart-line text-2xl text-pink-500"></i>
-                                        </div>
-                                        <h3 class="text-lg font-semibold">E-Commerce Shop</h3>
-                                        <p class="text-sm text-muted-foreground">Website bán hàng chuyên nghiệp, tích hợp payment</p>
-                                        <div class="flex gap-2 mt-2">
-                                            <span class="text-xs px-2 py-1 rounded-full bg-pink-500/20 text-pink-500">React</span>
-                                            <span class="text-xs px-2 py-1 rounded-full bg-rose-500/20 text-rose-500">MongoDB</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    <section class="animate flex flex-col gap-y-5 md:flex-row md:gap-y-0 show">
-                        <div class="text-xl font-semibold md:min-w-36">
-                            <h2>Picture</h2>
-                        </div>
-                        <div class="flex flex-1 flex-col gap-y-3">
-                            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                                <a class="group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-primary-foreground transition-all hover:border-foreground/25 hover:shadow-sm cursor-pointer">
-                                    <img src="https://files.catbox.moe/fsorjp.jpg" alt="Img" class="absolute top-0 h-full w-full object-cover">
-                                    <div class="z-10 flex flex-col gap-y-0.5 px-5 pb-4 pt-24">
-                                        <h2 class="text-lg font-medium">&ensp;</h2>
-                                        <p class="text-muted-foreground">&ensp;</p>
-                                    </div>
-                                </a>
-                                <a class="group overflow-hidden relative flex flex-col gap-y-3 rounded-2xl border border-border bg-primary-foreground transition-all hover:border-foreground/25 hover:shadow-sm cursor-pointer">
-                                    <img src="https://files.catbox.moe/fsorjp.jpg" alt="Img" class="absolute top-0 h-full w-full object-cover">
-                                    <div class="z-10 flex flex-col gap-y-0.5 px-5 pb-4 pt-24">
-                                        <h2 class="text-lg font-medium">&ensp;</h2>
-                                        <p class="text-muted-foreground">&ensp;</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="animate flex flex-col gap-y-5 md:flex-row md:gap-y-0 show">
-                        <div class="text-xl font-semibold md:min-w-36">
-                            <h2>Skills</h2>
-                        </div>
-                        <div class="flex flex-1 flex-col gap-y-3">
-                            <div class="flex flex-col gap-y-2 md:flex-row md:gap-x-5 md:gap-y-0">
-                                <h3 class="w-1/5 font-medium">Web</h3>
-                                <div class="flex md:w-4/5 flex-row flex-wrap gap-x-4 gap-y-2">
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Vue.js</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Nuxt.js</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Node.js</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">React.js</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">TypeScript</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">JavaScript</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">CSS</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">HTML</p>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-y-2 md:flex-row md:gap-x-5 md:gap-y-0">
-                                <h3 class="w-1/5 font-medium">Programming</h3>
-                                <div class="flex md:w-4/5 flex-row flex-wrap gap-x-4 gap-y-2">
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Python</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">PyTorch</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">C</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">C++</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">C#</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">R</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">MySQL</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">PostgreSQL</p>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-y-2 md:flex-row md:gap-x-5 md:gap-y-0">
-                                <h3 class="w-1/5 font-medium">Tools</h3>
-                                <div class="flex md:w-4/5 flex-row flex-wrap gap-x-4 gap-y-2">
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">VSCode</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Vim</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Git</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Linux</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Docker</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Nginx</p>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-y-2 md:flex-row md:gap-x-5 md:gap-y-0">
-                                <h3 class="w-1/5 font-medium">Design</h3>
-                                <div class="flex md:w-4/5 flex-row flex-wrap gap-x-4 gap-y-2">
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Figma</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Photoshop</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Illustrator</p>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-y-2 md:flex-row md:gap-x-5 md:gap-y-0">
-                                <h3 class="w-1/5 font-medium">Other</h3>
-                                <div class="flex md:w-4/5 flex-row flex-wrap gap-x-4 gap-y-2">
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">Markdown</p>
-                                    </button>
-                                    <button class="group inline-flex items-center gap-x-1 bg-primary-foreground border border-border px-2 py-1 text-sm text-muted-foreground transition-all hover:bg-input no-underline cursor-default rounded-xl">
-                                        <p class="my-0">LaTeX</p>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <button class="z-90 group fixed bottom-12 end-4 flex h-10 w-10 translate-y-28 items-center justify-center rounded-full border-2 border-transparent bg-primary-foreground text-muted-foreground opacity-0 transition-all duration-300 hover:border-border/75 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12" data-show="true" id="croll-to-top">
-                    <div class="absolute bottom-0 end-0 start-0 top-1 flex items-center justify-center transition-opacity group-hover:opacity-0 group-[.ended]:opacity-0">
-                        <span class="text" id="scroll-percent">0</span>
-                        <span class="text-xs">%</span>
+                    <!-- Social Links -->
+                    <div class="flex justify-center gap-4">
+                        <a href="https://www.facebook.com/share/1FfcJg1UYA/" target="_blank" class="social-link glass">
+                            <img src="https://cdn.mypanel.link/4cgr8h/9rjnzbd98rt8s5we.gif" width="24" alt="Facebook" class="relative z-10">
+                        </a>
+                        <a href="https://instagram.com/your_instagram" target="_blank" class="social-link glass">
+                            <img src="https://cdn.mypanel.link/4cgr8h/15z7egnk0elz7gzm.gif" width="24" alt="Instagram" class="relative z-10">
+                        </a>
+                        <a href="https://www.tiktok.com/@l.dmusic1" target="_blank" class="social-link glass">
+                            <img src="https://cdn.mypanel.link/4cgr8h/ewzs0f9k8ic2932y.gif" width="24" alt="TikTok" class="relative z-10">
+                        </a>
+                        <a href="https://github.com/leduc2020" target="_blank" class="social-link glass">
+                            <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" width="24" alt="GitHub" class="relative z-10">
+                        </a>
                     </div>
-                    <i class="ri-arrow-up-s-line size-6 opacity-0 transition-opacity group-hover:opacity-100 group-[.ended]:opacity-100"></i>
-                </button>
-                <div class="mt-16 flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md">
-                    <span class="relative flex items-center justify-center">
-                        <span class="absolute inline-flex h-2 w-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75"></span>
-                        <span class="relative inline-flex h-2 w-2 rounded-full bg-green-400"></span>
-                    </span>
-                    <div>
-                        <p id="cham-ngon" class="font-medium text-muted-foreground">Coding is not just work, it's art 💻</p>
+                </section>
+                
+                <!-- Bio Section -->
+                <section class="mb-20 fade-in-delay-1">
+                    <div class="glass-strong rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                            About Me
+                        </h2>
+                        <div class="space-y-4 text-gray-300">
+                            <p>Hello, my name is VanDuc. I am a member of WusTeam and a freelance programmer, with a passion for coding driven by pure interest.</p>
+                            <p>My main interest lies in back-end development and system architecture.</p>
+                            <p>I enjoy overthinking and solving complex problems.</p>
+                        </div>
+                        <div class="mt-6">
+                            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fleduc2020&count_bg=%233B82F6&title_bg=%231A1A2E&icon=github.svg&icon_color=%23FFFFFF&title=Profile+Views&edge_flat=false" alt="Hits" class="rounded-lg">
+                        </div>
                     </div>
-                </div>
-                <footer class="mx-auto mt-24 w-full text-center">
-                    <div class="border-t border-border p-2">
-                        <div class="flex flex-col items-center justify-center gap-y-3 sm:flex-row sm:gap-y-0">
-                            <div class="flex flex-col items-center justify-center gap-2 text-sm sm:flex-row sm:gap-x-4">
-                                <p>
-                                    © <span id="year"></span>
-                                    <a href="/">ShopThuyLinh.Click</a>
-                                    . All Rights Reserved.
-                                </p>
+                </section>
+                
+                <!-- Payment Section -->
+                <section class="mb-20 fade-in-delay-2">
+                    <h2 class="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        Payment Info
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="payment-card">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-2xl">
+                                    🏦
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-semibold mb-1">LE VAN DUC</div>
+                                    <div class="text-gray-400 text-sm flex items-center gap-2">
+                                        <span>7104042010</span>
+                                        <button onclick="copyText('7104042010')" class="text-blue-400 hover:text-blue-300 transition-colors">
+                                            <i class="ri-file-copy-line"></i>
+                                        </button>
+                                    </div>
+                                    <div class="text-xs text-gray-500 mt-1">ACB Bank</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="payment-card">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-2xl">
+                                    🏦
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-semibold mb-1">LE VAN DUC</div>
+                                    <div class="text-gray-400 text-sm flex items-center gap-2">
+                                        <span>7104042010</span>
+                                        <button onclick="copyText('7104042010')" class="text-blue-400 hover:text-blue-300 transition-colors">
+                                            <i class="ri-file-copy-line"></i>
+                                        </button>
+                                    </div>
+                                    <div class="text-xs text-gray-500 mt-1">VietinBank</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div id="real-time">00:00:00</div>
+                </section>
+                
+                <!-- Free Source Code Section -->
+                <section class="mb-20 fade-in-delay-3">
+                    <h2 class="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        Mã Nguồn Free
+                    </h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="card gradient-card-blue p-6 relative z-10">
+                            <div class="relative z-10">
+                                <div class="text-4xl mb-4">💻</div>
+                                <h3 class="text-xl font-bold mb-3">Website Profile</h3>
+                                <p class="text-gray-300 text-sm mb-4">Mã nguồn trang cá nhân đẹp mắt, responsive</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="tag bg-blue-500/20 text-blue-300">HTML</span>
+                                    <span class="tag bg-purple-500/20 text-purple-300">CSS</span>
+                                    <span class="tag bg-yellow-500/20 text-yellow-300">JS</span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="card gradient-card-green p-6 relative z-10">
+                            <div class="relative z-10">
+                                <div class="text-4xl mb-4">📊</div>
+                                <h3 class="text-xl font-bold mb-3">Admin Dashboard</h3>
+                                <p class="text-gray-300 text-sm mb-4">Giao diện quản trị hiện đại, đầy đủ tính năng</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="tag bg-green-500/20 text-green-300">Vue.js</span>
+                                    <span class="tag bg-teal-500/20 text-teal-300">Node.js</span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://shopthuylinh.click/trang-chu" target="_blank" class="card gradient-card-pink p-6 relative z-10">
+                            <div class="relative z-10">
+                                <div class="text-4xl mb-4">🛒</div>
+                                <h3 class="text-xl font-bold mb-3">E-Commerce Shop</h3>
+                                <p class="text-gray-300 text-sm mb-4">Website bán hàng chuyên nghiệp, tích hợp payment</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="tag bg-pink-500/20 text-pink-300">React</span>
+                                    <span class="tag bg-rose-500/20 text-rose-300">MongoDB</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+                
+                <!-- Skills Section -->
+                <section class="mb-20">
+                    <h2 class="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        Technical Skills
+                    </h2>
+                    <div class="glass-strong rounded-2xl p-8 space-y-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4 text-blue-300">Web Development</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="skill-badge glass">Vue.js</span>
+                                <span class="skill-badge glass">Nuxt.js</span>
+                                <span class="skill-badge glass">Node.js</span>
+                                <span class="skill-badge glass">React.js</span>
+                                <span class="skill-badge glass">TypeScript</span>
+                                <span class="skill-badge glass">JavaScript</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4 text-green-300">Programming</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="skill-badge glass">Python</span>
+                                <span class="skill-badge glass">PyTorch</span>
+                                <span class="skill-badge glass">C/C++</span>
+                                <span class="skill-badge glass">C#</span>
+                                <span class="skill-badge glass">R</span>
+                                <span class="skill-badge glass">MySQL</span>
+                                <span class="skill-badge glass">PostgreSQL</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4 text-purple-300">Tools & Design</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="skill-badge glass">VSCode</span>
+                                <span class="skill-badge glass">Git</span>
+                                <span class="skill-badge glass">Docker</span>
+                                <span class="skill-badge glass">Linux</span>
+                                <span class="skill-badge glass">Figma</span>
+                                <span class="skill-badge glass">Photoshop</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Status Badge -->
+                <section class="text-center mb-12">
+                    <div class="status-badge glass-strong inline-flex">
+                        <div class="status-dot"></div>
+                        <span id="statusText">Available for freelance work</span>
+                    </div>
+                </section>
+                
+                <!-- Footer -->
+                <footer class="glass-strong rounded-2xl p-6 text-center">
+                    <div class="mb-4">
+                        <p class="text-gray-400">
+                            © <span id="year"></span> 
+                            <a href="https://shopthuylinh.click" class="text-blue-400 hover:text-blue-300 transition-colors">ShopThuyLinh.Click</a>
+                            . All Rights Reserved.
+                        </p>
+                    </div>
+                    <div class="text-sm text-gray-500" id="realTime"></div>
                 </footer>
-                <div id="toast-prompt">
-                    <img src="https://i.imgur.com/aGMqekz.gif" width="32" height="32">
-                    Bạn có muốn cho phép vừa nghe nhạc vừa lướt trang web không ?
-                    <button class="close-btn">Không hẹn lại lần sau</button>
-                    <button class="confirm-btn">Cho phép luôn</button>
-                </div>
             </main>
         </div>
         
+        <!-- Scroll to Top Button -->
+        <button class="scroll-top" id="scrollTop">
+            <i class="ri-arrow-up-line text-2xl text-white relative z-10"></i>
+        </button>
+        
         <script>
-            // Loading screen
-            window.addEventListener('load', function() {
-                setTimeout(function() {
-                    document.querySelector('.td-loading-v2').classList.add('none');
-                    document.querySelector('.pace').style.display = 'none';
-                }, 2000);
+            // Loading Screen
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    document.getElementById('loading').classList.add('hide');
+                }, 1500);
             });
             
-            // Progress bar simulation
-            let progress = 0;
-            const progressInterval = setInterval(function() {
-                progress += Math.random() * 30;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(progressInterval);
-                }
-                document.querySelector('.pace-progress').style.width = progress + '%';
-            }, 200);
-            
-            // Current year
+            // Current Year
             document.getElementById('year').textContent = new Date().getFullYear();
             
-            // Real time clock
+            // Real Time Clock
             function updateTime() {
                 const now = new Date();
-                const hours = String(now.getHours()).padStart(2, '0');
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const seconds = String(now.getSeconds()).padStart(2, '0');
-                document.getElementById('real-time').textContent = hours + ':' + minutes + ':' + seconds;
+                const time = now.toLocaleTimeString('vi-VN', { hour12: false });
+                document.getElementById('realTime').textContent = time;
             }
-            setInterval(updateTime, 1000);
             updateTime();
+            setInterval(updateTime, 1000);
             
-            // Scroll to top button
-            const scrollBtn = document.getElementById('croll-to-top');
-            const scrollPercent = document.getElementById('scroll-percent');
-            
-            window.addEventListener('scroll', function() {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const percent = Math.round((scrollTop / scrollHeight) * 100);
-                
-                if (scrollPercent) {
-                    scrollPercent.textContent = percent;
-                }
-                
-                if (percent >= 100) {
-                    scrollBtn.classList.add('ended');
+            // Header Scroll Effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
                 } else {
-                    scrollBtn.classList.remove('ended');
-                }
-                
-                if (scrollTop > 300) {
-                    scrollBtn.setAttribute('data-show', 'true');
-                } else {
-                    scrollBtn.setAttribute('data-show', 'false');
+                    header.classList.remove('scrolled');
                 }
             });
             
-            scrollBtn.addEventListener('click', function() {
+            // Scroll to Top Button
+            const scrollTopBtn = document.getElementById('scrollTop');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('show');
+                } else {
+                    scrollTopBtn.classList.remove('show');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', () => {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
             });
             
-            // Header scroll effect
-            const header = document.getElementById('main-header');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('not-top');
+            // Theme Toggle (Basic Implementation)
+            const themeToggle = document.getElementById('themeToggle');
+            let isDark = true;
+            
+            themeToggle.addEventListener('click', () => {
+                isDark = !isDark;
+                if (isDark) {
+                    document.body.style.background = 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%)';
+                    themeToggle.innerHTML = '<i class="ri-sun-line text-xl"></i>';
                 } else {
-                    header.classList.remove('not-top');
+                    document.body.style.background = 'linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)';
+                    document.body.style.color = '#1a1a1a';
+                    themeToggle.innerHTML = '<i class="ri-moon-line text-xl"></i>';
                 }
             });
             
-            // Theme toggle
-            const themeBtn = document.querySelector('.change-theme');
-            themeBtn.addEventListener('click', function() {
-                document.documentElement.classList.toggle('dark');
-                if (document.documentElement.classList.contains('dark')) {
-                    document.body.style.background = '#0a0a0a';
-                    document.body.style.color = '#fff';
-                } else {
-                    document.body.style.background = '#fff';
-                    document.body.style.color = '#0a0a0a';
-                }
-            });
-            
-            // Copy to clipboard
-            document.querySelectorAll('[data-ws-copy]').forEach(function(el) {
-                el.addEventListener('click', function() {
-                    const text = this.getAttribute('data-ws-copy');
-                    navigator.clipboard.writeText(text).then(function() {
-                        alert('Đã copy: ' + text);
-                    });
+            // Copy to Clipboard Function
+            function copyText(text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    // Create toast notification
+                    const toast = document.createElement('div');
+                    toast.textContent = 'Đã copy: ' + text;
+                    toast.style.cssText = `
+                        position: fixed;
+                        bottom: 30px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                        color: white;
+                        padding: 12px 24px;
+                        border-radius: 12px;
+                        font-weight: 500;
+                        z-index: 10000;
+                        animation: slideUp 0.3s ease-out;
+                        box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4);
+                    `;
+                    document.body.appendChild(toast);
+                    
+                    setTimeout(() => {
+                        toast.style.animation = 'slideDown 0.3s ease-out';
+                        setTimeout(() => toast.remove(), 300);
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Copy failed:', err);
                 });
-            });
+            }
             
-            // Toast prompt
-            setTimeout(function() {
-                const toast = document.getElementById('toast-prompt');
-                if (toast) {
-                    toast.style.display = 'block';
-                }
-            }, 5000);
-            
-            document.querySelector('.close-btn')?.addEventListener('click', function() {
-                document.getElementById('toast-prompt').style.display = 'none';
-            });
-            
-            document.querySelector('.confirm-btn')?.addEventListener('click', function() {
-                document.getElementById('toast-prompt').style.display = 'none';
-                alert('Tính năng này đang được phát triển!');
-            });
-            
-            // Animate on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('show');
+            // Add CSS for toast animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideUp {
+                    from {
+                        opacity: 0;
+                        transform: translateX(-50%) translateY(20px);
                     }
-                });
-            }, observerOptions);
+                    to {
+                        opacity: 1;
+                        transform: translateX(-50%) translateY(0);
+                    }
+                }
+                @keyframes slideDown {
+                    from {
+                        opacity: 1;
+                        transform: translateX(-50%) translateY(0);
+                    }
+                    to {
+                        opacity: 0;
+                        transform: translateX(-50%) translateY(20px);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
             
-            document.querySelectorAll('.animate').forEach(function(el) {
-                observer.observe(el);
-            });
-            
-            // Random quotes
-            const quotes = [
+            // Random Status Messages
+            const statusMessages = [
+                "Available for freelance work",
                 "Coding is not just work, it's art 💻",
-                "Code never lies, comments sometimes do 🤔",
-                "First, solve the problem. Then, write the code 🎯",
-                "Experience is the name everyone gives to their mistakes 🌟",
-                "The best way to predict the future is to invent it 🚀"
+                "Building the future, one line at a time",
+                "Always learning, always growing 🚀",
+                "Open to new opportunities"
             ];
             
-            setInterval(function() {
-                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-                const quoteEl = document.getElementById('cham-ngon');
-                if (quoteEl) {
-                    quoteEl.style.opacity = '0';
-                    setTimeout(function() {
-                        quoteEl.textContent = randomQuote;
-                        quoteEl.style.opacity = '1';
-                    }, 300);
+            let currentStatusIndex = 0;
+            
+            setInterval(() => {
+                currentStatusIndex = (currentStatusIndex + 1) % statusMessages.length;
+                const statusText = document.getElementById('statusText');
+                statusText.style.opacity = '0';
+                
+                setTimeout(() => {
+                    statusText.textContent = statusMessages[currentStatusIndex];
+                    statusText.style.opacity = '1';
+                }, 300);
+            }, 5000);
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Add transition to status text
+            document.getElementById('statusText').style.transition = 'opacity 0.3s ease';
+            
+            // Parallax effect for animated background
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const bg = document.querySelector('.animated-bg');
+                if (bg) {
+                    bg.style.transform = `translateY(${scrolled * 0.5}px)`;
                 }
-            }, 10000);
+            });
+            
+            // Add hover effect to cards
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Lazy loading for images
+            const images = document.querySelectorAll('img');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.src;
+                        img.classList.add('fade-in');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+            
+            // Performance optimization: Debounce scroll events
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+            
+            // Easter egg: Konami code
+            const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+            let konamiIndex = 0;
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === konamiCode[konamiIndex]) {
+                    konamiIndex++;
+                    if (konamiIndex === konamiCode.length) {
+                        // Trigger easter egg
+                        document.body.style.animation = 'rainbow 2s linear infinite';
+                        const easterEgg = document.createElement('div');
+                        easterEgg.textContent = '🎉 You found the secret! 🎉';
+                        easterEgg.style.cssText = `
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+                            color: white;
+                            padding: 30px 50px;
+                            border-radius: 20px;
+                            font-size: 24px;
+                            font-weight: bold;
+                            z-index: 10000;
+                            animation: bounce 0.5s ease-out;
+                            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.5);
+                        `;
+                        document.body.appendChild(easterEgg);
+                        
+                        setTimeout(() => {
+                            easterEgg.remove();
+                            document.body.style.animation = '';
+                        }, 3000);
+                        
+                        konamiIndex = 0;
+                    }
+                } else {
+                    konamiIndex = 0;
+                }
+            });
+            
+            // Add rainbow animation
+            const rainbowStyle = document.createElement('style');
+            rainbowStyle.textContent = `
+                @keyframes rainbow {
+                    0% { filter: hue-rotate(0deg); }
+                    100% { filter: hue-rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(rainbowStyle);
+            
+            console.log('%c🚀 Welcome to Van Duc Portfolio!', 'font-size: 20px; font-weight: bold; color: #3b82f6;');
+            console.log('%cInterested in the code? Check out my GitHub!', 'font-size: 14px; color: #8b5cf6;');
         </script>
     </body>
 </html>
